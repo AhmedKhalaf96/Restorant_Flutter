@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:foodie/shared/component.dart';
 
 class home extends StatelessWidget {
   const home({Key? key}) : super(key: key);
@@ -38,69 +39,7 @@ class home extends StatelessWidget {
         ],
         elevation: 0.2,
       ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/hero-bg.jpg'),
-                fit: BoxFit.fill
-              )
-            ),
-            child: ListView(
-              children: [
-                DrawerHeader(child: Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Foodie',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 28,fontWeight: FontWeight.bold,letterSpacing: 2),),
-                      Text('.',textAlign: TextAlign.center,style: TextStyle(color: Colors.orange,fontSize: 28,fontWeight: FontWeight.bold,letterSpacing: 2),),
-
-                    ],
-                  ),
-                ),),
-                ListTile(title:Row(
-                  children: [
-                    Icon(Icons.home,color: Colors.orange,size: 30,),
-                    SizedBox(width: 20,),
-                    Text('Home',style: TextStyle(color: Colors.white,fontSize: 22),)
-                  ],
-                )),
-                ListTile(title:Row(
-                  children: [
-                    Icon(Icons.home,color: Colors.orange,size: 30,),
-                    SizedBox(width: 20,),
-                    Text('About Us',style: TextStyle(color: Colors.white,fontSize: 22),)
-                  ],
-                )),
-                ListTile(title:Row(
-                  children: [
-                    Icon(Icons.shop,color: Colors.orange,size: 30,),
-                    SizedBox(width: 20,),
-                    Text('Shop',style: TextStyle(color: Colors.white,fontSize: 22),)
-                  ],
-                )),
-                ListTile(title:Row(
-                  children: [
-                    Icon(Icons.home,color: Colors.orange,size: 30,),
-                    SizedBox(width: 20,),
-                    Text('blog',style: TextStyle(color: Colors.white,fontSize: 22),)
-                  ],
-                )),
-                ListTile(title:Row(
-                  children: [
-                    Icon(Icons.perm_contact_calendar,color: Colors.orange,size: 30,),
-                    SizedBox(width: 20,),
-                    Text('Contact Us',style: TextStyle(color: Colors.white,fontSize: 22),)
-                  ],
-                )),
-
-              ],
-            )
-          ),
-        ),
-      ),
+      drawer: Draw(context),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -200,9 +139,119 @@ class home extends StatelessWidget {
               itemCount: 5,
               ),
             ),
+            SizedBox(height: 20,),
+            Container(
+              color: Color.fromRGBO(230, 217, 217,.4),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Our Delicious ',
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+                        Text('Foods',
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color: Colors.orange),)
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('Food is any substance consumed to provide nutritional support for an organism.',
+                        style: TextStyle(color: Colors.grey[600],fontSize: 18,fontWeight: FontWeight.w600,),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+
+                    Container(
+                      color: Color.fromRGBO(230, 217, 217,.4),
+                      child: GridView.count(
+                          mainAxisSpacing: 5,crossAxisSpacing: 5,childAspectRatio: 1/1.6    ,
+                          crossAxisCount: 2,shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
+                          children: List.generate(4, (index) =>BuildProductGrid(context))
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ),
+            SizedBox(height: 20,),
+            Container(
+              width: 500,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/hero-bg.jpg'),
+                      fit: BoxFit.cover
+                  )
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    Text('The Foodie Have Excellent Of  ',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),),
+                    SizedBox(height: 10,),
+                    Text('Quality Burgers!',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.orange),),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text('The restaurants in Hangzhou also catered to many northern Chinese who had fled south from Kaifeng during the Jurchen invasion of the 1120s, while it is also known that many restaurants were run by families.',
+                        style: TextStyle(color: Colors.white.withOpacity(.7),fontSize: 16,fontWeight: FontWeight.w600,),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Bbutton(press: (){}, lname: 'Order Now'),
+                    SizedBox(height: 10,),
+                    Image.asset('images/hero.png',height: 200,),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+
           ],
         ),
       ),
     );
   }
+  Widget BuildProductGrid(context)=>Container(
+    color: Colors.white,
+    child: Stack(
+      alignment: AlignmentDirectional.topStart,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image(image: AssetImage("images/food1.png"),width: double.infinity,fit: BoxFit.cover,height: 200,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Fried Chicken Unlimited",maxLines: 2,overflow: TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                  SizedBox(height: 2,),
+                  Row(
+                    children: [
+                      Text('Price: ',
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18)
+                      ),
+                      Text('250',maxLines: 2,overflow: TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color:Colors.orange),),
+                    ],
+                  ),
+                  Bbutton(press: (){}, lname: 'Order Now'),
+                ],
+              ),
+            )
+
+          ],
+        ),
+
+      ],
+    ),
+  );
+
 }
