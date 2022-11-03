@@ -212,6 +212,48 @@ class home extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20,),
+            Column(
+              children: [
+                Text('A Moments Of Delivered ',
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('On ',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+                    Text('Right Time',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color: Colors.orange),),
+                    Text(' & Place',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                  child: Text('The restaurants in Hangzhou also catered to many northern Chinese who had fled south from Kaifeng during the Jurchen invasion of the 1120s, while it is also known that many restaurants were run by families.Order Now',
+                    style: TextStyle(color: Colors.grey[700],fontSize: 16,fontWeight: FontWeight.w600,),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Bbutton(
+                    lname: 'Order Now',
+                    press: (){}
+                ),
+                SizedBox(height: 10,),
+                Container(
+                  width: double.maxFinite,
+                  height: 210,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('images/deliverybg.png'),
+                          fit: BoxFit.fill
+                      )
+                  ),
+                  child: Image.asset('images/d.png',width: 200,height: 200,),
+                ),
+              ],
+            ),
+            SizedBox(height: 20,),
 
           ],
         ),
